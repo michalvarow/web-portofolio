@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michael Alvarow — Visual Storyteller</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #181818;
+    --surface: #1e1e1e;
+    --border: rgba(255,255,255,0.08);
+    --text: #f0ede8;
+    --text2: #a09c96;
+    --text3: #6b6762;
+    --accent: #c9a96e;
+    --accent2: #e8d5b0;
+    --glow: rgba(201,169,110,0.15);
+    --shadow: 0 24px 80px rgba(0,0,0,0.6);
+    --radius: 16px;
+    --radius-sm: 8px;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-cn: 'Noto Sans SC', sans-serif;
+    --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  [data-theme="light"] {
+    --bg: #f7f4ef;
+    --bg2: #eeebe4;
+    --bg3: #e5e1d8;
+    --surface: #ffffff;
+    --border: rgba(0,0,0,0.08);
+    --text: #1a1714;
+    --text2: #5a5550;
+    --text3: #9a9590;
+    --glow: rgba(201,169,110,0.1);
+    --shadow: 0 24px 80px rgba(0,0,0,0.12);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background var(--transition), color var(--transition);
+  }
+  [data-lang="zh"] { font-family: var(--font-cn), var(--font-body); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(10,10,10,0.7);
+    backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
+    transition: background var(--transition);
+  }
+  [data-theme="light"] nav { background: rgba(247,244,239,0.8); }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px; font-weight: 600;
+    color: var(--accent); letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    color: var(--text2); text-decoration: none; font-size: 13px;
+    font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-controls { display: flex; gap: 12px; align-items: center; }
+  .ctrl-btn {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text2); padding: 7px 14px; border-radius: 20px;
+    cursor: pointer; font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+    transition: all 0.3s; display: flex; align-items: center; gap: 6px;
+    font-family: var(--font-body);
+  }
+  .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .ctrl-btn svg { width:14px; height:14px; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 100px 48px 80px;
+    text-align: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,169,110,0.08) 0%, transparent 70%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--accent); padding: 8px 20px; border-radius: 30px;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 300; line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-name em { color: var(--accent); font-style: italic; }
+  .hero-tagline {
+    font-size: clamp(14px, 2vw, 18px); color: var(--text2);
+    font-weight: 300; letter-spacing: 0.04em;
+    margin: 20px 0 40px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .btn-primary {
+    background: var(--accent); color: #0a0a0a;
+    padding: 14px 36px; border-radius: 40px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s;
+    box-shadow: 0 8px 32px rgba(201,169,110,0.3);
+    border: none; cursor: pointer; font-family: var(--font-body);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,169,110,0.5); }
+  .btn-secondary {
+    background: transparent; color: var(--text);
+    padding: 14px 36px; border-radius: 40px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s;
+    border: 1px solid var(--border); cursor: pointer; font-family: var(--font-body);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--text3); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 40px; background: linear-gradient(var(--accent), transparent);
+    animation: scrollDown 2s ease infinite;
+  }
+  @keyframes scrollDown { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 50.01%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 48px; }
+  .section-header { margin-bottom: 60px; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content:''; width: 24px; height: 1px; background: var(--accent); }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 300; line-height: 1.1;
+    color: var(--text);
+  }
+  .section-title em { color: var(--accent); font-style: italic; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center; max-width: 1200px; margin: 0 auto;
+  }
+  .about-image-wrap {
+    position: relative; aspect-ratio: 3/4; max-height: 600px;
+    border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .about-image-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--bg3) 0%, var(--surface) 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; color: var(--text3); cursor: pointer;
+    transition: all 0.3s; position: relative;
+  }
+  .about-image-placeholder:hover { background: var(--surface); }
+  .about-image-placeholder svg { width: 48px; height: 48px; opacity: 0.4; }
+  .about-image-placeholder span { font-size: 13px; letter-spacing: 0.08em; opacity: 0.6; }
+  .about-image-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .about-photo-label {
+    position: absolute; bottom: 24px; left: 24px;
+    font-family: var(--font-display); font-size: 18px; font-style: italic;
+    color: var(--accent2); z-index: 1;
+  }
+  .about-text p {
+    color: var(--text2); font-size: 16px; font-weight: 300; line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .stats-row { display: flex; gap: 40px; margin: 40px 0; }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--font-display); font-size: 48px; font-weight: 300;
+    color: var(--accent); line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+  .skills-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .skill-tag {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text2); padding: 6px 16px; border-radius: 20px;
+    font-size: 12px; transition: all 0.3s;
+  }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--bg); }
+  .portfolio-tabs {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 48px;
+  }
+  .tab-btn {
+    padding: 10px 24px; border-radius: 30px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s; border: 1px solid var(--border);
+    background: transparent; color: var(--text2); font-family: var(--font-body);
+  }
+  .tab-btn.active { background: var(--accent); color: #0a0a0a; border-color: var(--accent); }
+  .tab-btn:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px; max-width: 1400px; margin: 0 auto;
+  }
+  .portfolio-item {
+    position: relative; border-radius: var(--radius); overflow: hidden;
+    background: var(--surface); border: 1px solid var(--border);
+    cursor: pointer; transition: transform 0.4s, box-shadow 0.4s;
+    aspect-ratio: 4/3;
+    animation: fadeIn 0.5s ease both;
+  }
+  .portfolio-item:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .portfolio-item.hidden { display: none; }
+  .portfolio-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; background: var(--bg3); position: relative; overflow: hidden;
+  }
+  .portfolio-placeholder::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(201,169,110,0.05) 100%);
+  }
+  .portfolio-placeholder svg { width: 40px; height: 40px; color: var(--text3); z-index:1; }
+  .portfolio-placeholder .item-type {
+    font-size: 11px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; z-index:1;
+  }
+  .item-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 24px;
+  }
+  .portfolio-item:hover .item-overlay { opacity: 1; }
+  .item-title { font-family: var(--font-display); font-size: 20px; font-weight: 400; color: #fff; }
+  .item-cat { font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+  .play-btn {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(201,169,110,0.9); display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: all 0.3s;
+  }
+  .portfolio-item[data-type="video"]:hover .play-btn { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .play-btn svg { width: 20px; height: 20px; color: #000; margin-left: 3px; }
+  .item-img {
+    width: 100%; height: 100%; object-fit: cover;
+    position: absolute; inset: 0;
+  }
+
+  /* ── ADD ITEM ── */
+  .add-item-card {
+    border-radius: var(--radius); border: 2px dashed var(--border);
+    aspect-ratio: 4/3; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    cursor: pointer; transition: all 0.3s; color: var(--text3);
+    background: transparent;
+  }
+  .add-item-card:hover { border-color: var(--accent); color: var(--accent); }
+  .add-item-card svg { width: 32px; height: 32px; }
+  .add-item-card span { font-size: 13px; letter-spacing: 0.08em; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg2); }
+  .timeline { max-width: 800px; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: linear-gradient(var(--accent), transparent);
+  }
+  .timeline-item { padding-left: 40px; margin-bottom: 48px; position: relative; }
+  .timeline-dot {
+    position: absolute; left: -5px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 12px var(--accent);
+  }
+  .timeline-date {
+    font-size: 12px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .timeline-title {
+    font-family: var(--font-display); font-size: 22px; font-weight: 400;
+    color: var(--text); margin-bottom: 4px;
+  }
+  .timeline-company { font-size: 13px; color: var(--text3); margin-bottom: 16px; }
+  .timeline-desc { color: var(--text2); font-size: 14px; font-weight: 300; line-height: 1.8; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg); text-align: center; }
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+  .contact-email {
+    font-family: var(--font-display); font-size: clamp(20px, 3vw, 32px);
+    color: var(--accent); text-decoration: none; font-style: italic;
+    display: block; margin: 24px 0;
+    transition: opacity 0.3s;
+  }
+  .contact-email:hover { opacity: 0.7; }
+  .social-links { display: flex; gap: 16px; justify-content: center; margin-top: 32px; }
+  .social-link {
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+    color: var(--text2); transition: all 0.3s; text-decoration: none;
+  }
+  .social-link:hover { border-color: var(--accent); color: var(--accent); }
+  .social-link svg { width: 18px; height: 18px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--text3); font-size: 12px; letter-spacing: 0.06em;
+    background: var(--bg2);
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.92);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    padding: 24px;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal-box {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); max-width: 900px; width: 100%;
+    max-height: 90vh; overflow: auto;
+    transform: scale(0.95); transition: transform 0.3s;
+    position: relative;
+  }
+  .modal-overlay.open .modal-box { transform: scale(1); }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px; z-index: 1;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+  }
+  .modal-close:hover { color: var(--accent); border-color: var(--accent); }
+  .modal-media { width: 100%; aspect-ratio: 16/9; object-fit: contain; background: #000; }
+  .modal-media-img { width: 100%; max-height: 70vh; object-fit: contain; display: block; }
+  .modal-info { padding: 24px; }
+  .modal-title { font-family: var(--font-display); font-size: 28px; font-weight: 400; }
+  .modal-cat { font-size: 12px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 6px; }
+  .modal-desc { color: var(--text2); font-size: 14px; margin-top: 16px; line-height: 1.8; }
+
+  /* ── ADD MODAL ── */
+  .add-modal-form { padding: 40px; }
+  .add-modal-form h2 { font-family: var(--font-display); font-size: 32px; font-weight: 300; margin-bottom: 32px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-size: 12px; color: var(--text2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 12px 16px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text);
+    font-family: var(--font-body); font-size: 14px;
+    transition: border-color 0.3s; outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  .form-group select option { background: var(--bg2); }
+  .upload-zone {
+    border: 2px dashed var(--border); border-radius: var(--radius);
+    padding: 40px; text-align: center; cursor: pointer;
+    transition: all 0.3s; position: relative;
+  }
+  .upload-zone:hover, .upload-zone.dragover { border-color: var(--accent); background: var(--glow); }
+  .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .upload-zone svg { width: 40px; height: 40px; color: var(--accent); margin-bottom: 12px; }
+  .upload-zone p { color: var(--text2); font-size: 14px; }
+  .upload-zone span { color: var(--accent); font-size: 12px; display: block; margin-top: 4px; }
+  .form-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 32px; }
+  .upload-preview {
+    width: 100%; max-height: 200px; object-fit: cover;
+    border-radius: var(--radius-sm); margin-top: 16px; display: none;
+  }
+  .video-url-group { margin-top: 16px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0;transform:scale(0.97)} to{opacity:1;transform:scale(1)} }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:900px){
+    nav{padding:16px 24px;}
+    section{padding:80px 24px;}
+    .about-grid{grid-template-columns:1fr;gap:40px;}
+    .about-image-wrap{max-height:360px;}
+    .stats-row{gap:24px;}
+    footer{flex-direction:column;gap:8px;text-align:center;}
+  }
+  @media(max-width:600px){
+    nav{padding:14px 18px;}
+    .nav-links{display:none;}
+    .portfolio-grid{grid-template-columns:1fr;}
+    .hero-cta{flex-direction:column;align-items:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">MA.</a>
+  <div class="nav-links">
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+    <a href="#experience" data-i18n="nav.experience">Experience</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
+  </div>
+  <div class="nav-controls">
+    <button class="ctrl-btn" id="langToggle" onclick="toggleLang()" title="Switch Language">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span id="langLabel">中文</span>
+    </button>
+    <button class="ctrl-btn" onclick="toggleTheme()" title="Toggle Theme">
+      <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <span id="themeLabel">Light</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge" data-i18n="hero.badge">Digital Marketing & Content Creator</div>
+    <h1 class="hero-name">Michael <em>Alvarow</em></h1>
+    <p class="hero-tagline" data-i18n="hero.tagline">Helping brands grow through creative content and digital marketing strategies that drive results and engagement.</p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn-primary" data-i18n="hero.cta1">View Portfolio</a>
+      <a href="#contact" class="btn-secondary" data-i18n="hero.cta2">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span data-i18n="hero.scroll">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-image-wrap" id="aboutImgWrap">
+      <div class="about-image-placeholder" id="aboutImgPlaceholder"
+style="background-image: url('assets/foto profile.jpeg'); 
+background-size: cover; 
+background-position: center;">
+</div>
+      <div class="about-image-overlay" id="aboutImgOverlay" style="display:none"></div>
+      <div class="about-photo-label" id="aboutPhotoLabel">Michael Alvarow</div>
+    
+    </div>
+    <div class="about-text reveal">
+      <div class="section-header">
+        <div class="section-label" data-i18n="about.label">About Me</div>
+        <h2 class="section-title" data-i18n="about.title">Where <em>Psychology</em><br>Meets Visual Art</h2>
+      </div>
+      <p data-i18n="about.p1">Psychology graduate with over 5 years of experience as a visual editor and photographer. I specialize in producing emotionally resonant content that connects brands with their audiences on a deeper level.</p>
+      <p data-i18n="about.p2">From concept development to post-production — my approach blends behavioral insights with compelling visual storytelling to drive engagement and build lasting brand impact.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-num">5+</div><div class="stat-label" data-i18n="stat.years">Years Exp.</div></div>
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label" data-i18n="stat.companies">Companies</div></div>
+        <div class="stat"><div class="stat-num">3.64</div><div class="stat-label" data-i18n="stat.gpa">GPA</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label" data-i18n="stat.hskk">HSKK</div></div>
+      </div>
+      <div class="skills-tags">
+        <span class="skill-tag">Adobe Premiere Pro</span>
+        <span class="skill-tag">After Effects</span>
+        <span class="skill-tag">Photoshop</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">CapCut</span>
+        <span class="skill-tag">Photography</span>
+        <span class="skill-tag">Content Strategy</span>
+        <span class="skill-tag">Psychology</span>
+        <span class="skill-tag">Video Production</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div style="max-width:1400px;margin:0 auto;">
+    
+    <div class="section-header reveal">
+      <div class="section-label">Portfolio</div>
+      <h2 class="section-title">Selected <em>Works</em></h2>
+    </div>
+
+    <!-- FILTER -->
+    <div class="portfolio-tabs">
+      <button class="tab-btn active" data-cat="all" onclick="filterPortfolio('all')">All</button>
+      <button class="tab-btn" data-cat="photography" onclick="filterPortfolio('photography')">Photography</button>
+      <button class="tab-btn" data-cat="videography" onclick="filterPortfolio('videography')">Videography</button>
+      <button class="tab-btn" data-cat="furniture" onclick="filterPortfolio('furniture')">Furniture</button>
+      <button class="tab-btn" data-cat="product" onclick="filterPortfolio('product')">Product Shoot</button>
+      <button class="tab-btn" data-cat="social" onclick="filterPortfolio('social')">Social Media</button>
+      <button class="tab-btn" data-cat="Food and Beverage" onclick="filterPortfolio('Food and Beverage')">Food & Beverage</button>
+    </div>
+
+    <!-- GRID -->
+    <div class="portfolio-grid">
+
+      <!-- FOTO FURNITURE -->
+      <div class="portfolio-item"
+      data-cat="furniture"
+      data-type="photo"
+      data-title="Ilena Furniture"
+      data-desc="Modern furniture campaign"
+      data-src="assets/img/portfolio/furniture1.jpg"
+      onclick="openMedia(this)">
+        <img class="item-img" src="assets/img/portfolio/furniture1.jpg">
+        <div class="item-overlay">
+          <div class="item-title">Ilena Furniture</div>
+          <div class="item-cat">Furniture</div>
+        </div>
+      </div>
+
+      <div class="portfolio-item"
+      data-cat="furniture"
+      data-type="photo"
+      data-title="Ilena Furniture"
+      data-desc="Modern furniture campaign"
+      data-src="assets/img/portfolio/furniture2.jpg"
+      onclick="openMedia(this)">
+        <img class="item-img" src="assets/img/portfolio/furniture2.jpg">
+        <div class="item-overlay">
+          <div class="item-title">Ilena Furniture</div>
+          <div class="item-cat">Furniture</div>
+        </div>
+      </div>
+
+      <!-- FOTO PRODUCT -->
+      <div class="portfolio-item"
+      data-cat="product"
+      data-type="photo"
+      data-title="Product Shoot"
+      data-desc="Clean product photography"
+      data-src="assets/img/portfolio/product1.jpg"
+      onclick="openMedia(this)">
+        <img class="item-img" src="assets/img/portfolio/product1.jpg">
+        <div class="item-overlay">
+          <div class="item-title">Product Shoot</div>
+          <div class="item-cat">Product</div>
+        </div>
+      </div>
+
+      <!-- PHOTOGRAPHY -->
+      <div class="portfolio-item"
+      data-cat="photography"
+      data-type="photo"
+      data-title="photo shoots"
+      data-desc="Clean photo photography"
+      data-src="assets/img/portfolio/photography1.jpg"
+      onclick="openMedia(this)">
+        <img class="item-img" src="assets/img/portfolio/photography1.jpg">
+        <div class="item-overlay">
+          <div class="item-title">Product Shoot</div>
+          <div class="item-cat">Product</div>
+        </div>
+      </div>
+
+      <!-- VIDEO -->
+      <div class="portfolio-item"
+      data-cat="videography"
+      data-type="video"
+      data-title="Brand Video"
+      data-desc="Campaign video ads"
+      data-src="assets/video/video1.mp4"
+      onclick="openMedia(this)">
+        <video class="item-img" src="assets/video/video1.mp4"></video>
+        <div class="item-overlay">
+          <div class="item-title">Brand Video</div>
+          <div class="item-cat">Videography</div>
+        </div>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="portfolio-item"
+      data-cat="videography"
+      data-type="video"
+      data-title="Brand Video"
+      data-desc="Campaign video ads"
+      data-src="assets/video/video2.mp4"
+      onclick="openMedia(this)">
+        <video class="item-img" src="assets/video/video2.mp4"></video>
+        <div class="item-overlay">
+          <div class="item-title">Brand Video</div>
+          <div class="item-cat">Videography</div>
+        </div>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="portfolio-item"
+      data-cat="videography"
+      data-type="video"
+      data-title="Brand Video"
+      data-desc="Campaign video ads"
+      data-src="assets/video/video3.mp4"
+      onclick="openMedia(this)">
+        <video class="item-img" src="assets/video/video3.mp4"></video>
+        <div class="item-overlay">
+          <div class="item-title">Brand Video</div>
+          <div class="item-cat">Videography</div>
+        </div>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- FOOD -->
+      <div class="portfolio-item"
+      data-cat="Food and Beverage"
+      data-type="photo"
+      data-title="Food Campaign"
+      data-desc="Food photography campaign"
+      data-src="assets/img/portfolio/food1.jpg"
+      onclick="openMedia(this)">
+        <img class="item-img" src="assets/img/portfolio/food1.jpg">
+        <div class="item-overlay">
+          <div class="item-title">Food Campaign</div>
+          <div class="item-cat">Food & Beverage</div>
+        </div>
+      </div>
+
+      <!-- SOCIAL MEDIA -->
+      <div class="portfolio-item"
+      data-cat="social"
+      data-type="photo"
+      data-title="Social Content"
+      data-desc="Short-form content"
+      data-src="assets/img/portfolio/social1.jpg"
+      onclick="openMedia(this)">
+       <img class="item-img" src="assets/img/portfolio/social1.jpg">
+        <div class="item-overlay">
+          <div class="item-title">Food Campaign</div>
+          <div class="item-cat">Food & Beverage</div>
+        </div>
+        <!-- <video class="item-img" src="assets/img/portfolio/social1.jpg"></video>
+        <div class="item-overlay">
+          <div class="item-title">Social Content</div>
+          <div class="item-cat">Social Media</div>
+        </div>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-header reveal">
+      <div class="section-label" data-i18n="exp.label">Experience</div>
+      <h2 class="section-title" data-i18n="exp.title">Work <em>History</em></h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date" data-i18n="exp.date1">Jan 2025 — Present</div>
+        <div class="timeline-title" data-i18n="exp.title1">Digital Marketing — Content Creator</div>
+        <div class="timeline-company">CV. Catur Mandiri Bhakti Mandiri</div>
+        <div class="timeline-desc" data-i18n="exp.desc1">Developing brand-aligned content planners, managing end-to-end production for product shoots and digital campaigns, and continuously refining content strategy based on performance metrics.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date" data-i18n="exp.date2">Oct 2023 — May 2024</div>
+        <div class="timeline-title" data-i18n="exp.title2">Content Researcher & Video Editor</div>
+        <div class="timeline-company">Bull Media</div>
+        <div class="timeline-desc" data-i18n="exp.desc2">Product research, high-quality photo and video capture, ad creative production, and landing page development to drive e-commerce visibility and engagement.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date" data-i18n="exp.date3">Jan 2021 — May 2023</div>
+        <div class="timeline-title" data-i18n="exp.title3">Head of Media Department</div>
+        <div class="timeline-company">PT. Hafvintha Putra Panaluan</div>
+        <div class="timeline-desc" data-i18n="exp.desc3">Led full media department including social media calendar management, product photoshoot coordination, full-cycle video and photo production, and packaging design aligned with brand identity.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date" data-i18n="exp.date4">Feb 2015 — Mar 2019</div>
+        <div class="timeline-title" data-i18n="exp.title4">Head Editor & Videographer</div>
+        <div class="timeline-company">Chapter Eleven Film</div>
+        <div class="timeline-desc" data-i18n="exp.desc4">Managed all stages of video production from pre-production planning to color grading and final delivery. Collaborated with clients to align creative output with their vision.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <div class="section-label" style="justify-content:center" data-i18n="contact.label">Contact</div>
+    <h2 class="section-title" data-i18n="contact.title">Let's <em>Collaborate</em></h2>
+    <p style="color:var(--text2);margin-top:20px;font-size:16px;font-weight:300;" data-i18n="contact.sub">Available for freelance projects and full-time opportunities</p>
+    <a href="mailto:michalvarow96@gmail.com" class="contact-email">michalvarow96@gmail.com</a>
+    <p style="color:var(--text3);font-size:14px;">(+62) 895 391 016 655 · Semarang, Indonesia</p>
+    <div class="social-links">
+      <a href="https://drive.google.com/drive/folders/1LUaZ7q5yMUMt7rIphAA7kmpvXSwGUHSI?usp=sharing" target="_blank" class="social-link" title="Portfolio Drive">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      </a>
+      <a href="mailto:michalvarow96@gmail.com" class="social-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Michael Alvarow Kurnia Sugiyo</span>
+  <span data-i18n="footer.made">Visual Storyteller · Content Creator · Photographer</span>
+</footer>
+
+<!-- MEDIA MODAL -->
+<div class="modal-overlay" id="mediaModal" onclick="closeIfBg(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('mediaModal')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="modalMediaContent"></div>
+    <div class="modal-info">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-cat" id="modalCat"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD MODAL -->
+
+
+<script>
+// ─── I18N ───────────────────────────────────────────────────────────────────
+const translations = {
+  en: {
+    "nav.about":"About","nav.portfolio":"Portfolio","nav.experience":"Experience","nav.contact":"Contact",
+    "hero.badge":"Digital Marketing & Content Creator",
+    "hero.tagline":"Helping brands grow through creative content and digital marketing strategies that drive results and engagement.",
+    "hero.cta1":"View Portfolio","hero.cta2":"Get in Touch","hero.scroll":"Scroll",
+    "about.label":"About Me","about.title":"Where Psychology Meets Visual Art",
+    "about.uploadphoto":"Click to upload profile photo",
+    "about.p1":"Psychology graduate with over 5 years of experience as a visual editor and photographer. I specialize in producing emotionally resonant content that connects brands with their audiences on a deeper level.",
+    "about.p2":"From concept development to post-production — my approach blends behavioral insights with compelling visual storytelling to drive engagement and build lasting brand impact.",
+    "stat.years":"Years Exp.","stat.companies":"Companies","stat.gpa":"GPA","stat.hskk":"HSKK",
+    "portfolio.label":"Portfolio","portfolio.title":"Selected Works","portfolio.add":"Add Work",
+    "tab.all":"All","tab.photography":"Photography","tab.videography":"Videography",
+    "tab.furniture":"Furniture","tab.product":"Product Shoot","tab.social":"Social Media","tab.Food and Beverage":"Food and Beverage",
+    "exp.label":"Experience","exp.title":"Work History",
+    "exp.date1":"Jan 2025 — Present","exp.title1":"Digital Marketing — Content Creator","exp.desc1":"Developing brand-aligned content planners, managing end-to-end production for product shoots and digital campaigns, and continuously refining content strategy based on performance metrics.",
+    "exp.date2":"Oct 2023 — May 2024","exp.title2":"Content Researcher & Video Editor","exp.desc2":"Product research, high-quality photo and video capture, ad creative production, and landing page development to drive e-commerce visibility and engagement.",
+    "exp.date3":"Jan 2021 — May 2023","exp.title3":"Head of Media Department","exp.desc3":"Led full media department including social media calendar management, product photoshoot coordination, full-cycle video and photo production, and packaging design aligned with brand identity.",
+    "exp.date4":"Feb 2015 — Mar 2019","exp.title4":"Head Editor & Videographer","exp.desc4":"Managed all stages of video production from pre-production planning to color grading and final delivery. Collaborated with clients to align creative output with their vision.",
+    "contact.label":"Contact","contact.title":"Let's Collaborate","contact.sub":"Available for freelance projects and full-time opportunities",
+    "footer.made":"Visual Storyteller · Content Creator · Photographer",
+    "add.title":"Add Portfolio Item","add.itemtitle":"Title","add.category":"Category","add.type":"Type",
+    "add.desc":"Description","add.uploadmedia":"Upload Media (Photo/Thumbnail)","add.uploadhint":"Drag & drop or click to upload",
+    "add.formats":"Supports JPG, PNG, MP4, MOV","add.videourl":"Video URL (YouTube / Vimeo embed)",
+    "add.cancel":"Cancel","add.save":"Add to Portfolio"
+  },
+  zh: {
+    "nav.about":"关于我","nav.portfolio":"作品集","nav.experience":"工作经历","nav.contact":"联系方式",
+    "hero.badge":"数字营销与内容创作专家",
+    "hero.tagline":"通过创意内容和数字营销策略，助力品牌实现增长并提升互动与成效",
+    "hero.cta1":"查看作品集","hero.cta2":"联系我","hero.scroll":"向下滚动",
+    "about.label":"关于我","about.title":"心理学与视觉艺术的交汇",
+    "about.uploadphoto":"点击上传个人照片",
+    "about.p1":"心理学本科毕业，拥有超过五年的视觉编辑与摄影经验，擅长创作能够与受众产生深度情感共鸣的视觉内容，帮助品牌建立更有影响力的形象。",
+    "about.p2":"从概念创作到后期制作，我将行为心理学洞察融入视觉叙事，以此提升用户参与度，并为品牌建立持久的传播影响力。",
+    "stat.years":"年经验","stat.companies":"服务企业","stat.gpa":"学业绩点","stat.hskk":"HSKK",
+    "portfolio.label":"作品集","portfolio.title":"精选作品","portfolio.add":"添加作品",
+    "tab.all":"全部","tab.photography":"摄影","tab.videography":"摄像","tab.furniture":"家具",
+    "tab.product":"产品拍摄","tab.social":"社交媒体","tab.Food and Beverage":"食品和饮料",
+    "exp.label":"工作经历","exp.title":"职业履历",
+    "exp.date1":"2025年1月至今","exp.title1":"数字营销内容创作者","exp.desc1":"制定符合品牌战略的内容规划，统筹产品拍摄及数字营销活动的全流程生产，并依据效果数据持续优化内容策略。",
+    "exp.date2":"2023年10月—2024年5月","exp.title2":"内容研究员与视频剪辑师","exp.desc2":"负责产品调研、高质量图片与视频拍摄、广告创意制作及落地页开发，以提升电商平台的曝光度与用户互动。",
+    "exp.date3":"2021年1月—2023年5月","exp.title3":"媒体部门负责人","exp.desc3":"全面领导媒体部门工作，包括社交媒体内容日历管理、产品拍摄统筹协调、视频与摄影的全流程制作，以及符合品牌形象的包装设计。",
+    "exp.date4":"2015年2月—2019年3月","exp.title4":"主剪辑师与摄像师","exp.desc4":"负责视频制作的全部环节，涵盖前期筹备规划、调色处理直至最终交付。积极与客户沟通，确保创意成果与客户需求高度契合。",
+    "contact.label":"联系方式","contact.title":"期待合作","contact.sub":"欢迎自由职业项目及全职工作机会垂询",
+    "footer.made":"视觉叙事者 · 内容创作者 · 摄影师",
+    "add.title":"添加作品","add.itemtitle":"标题","add.category":"分类","add.type":"类型",
+    "add.desc":"作品描述","add.uploadmedia":"上传媒体文件（照片/缩略图）","add.uploadhint":"拖拽文件或点击上传",
+    "add.formats":"支持格式：JPG、PNG、MP4、MOV","add.videourl":"视频链接（YouTube / Vimeo 嵌入地址）",
+    "add.cancel":"取消","add.save":"添加至作品集"
+  }
+};
+
+let currentLang = 'en';
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'zh' : 'en';
+  document.documentElement.setAttribute('data-lang', currentLang);
+  document.getElementById('langLabel').textContent = currentLang === 'en' ? '中文' : 'EN';
+  applyTranslations();
+}
+function applyTranslations() {
+  const t = translations[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+}
+
+// ─── THEME ──────────────────────────────────────────────────────────────────
+let isDark = true;
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeLabel').textContent = isDark ? 'Light' : 'Dark';
+  document.getElementById('themeIcon').innerHTML = isDark
+    ? '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>'
+    : '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+}
+
+// ─── PORTFOLIO FILTER ────────────────────────────────────────────────────────
+function filterPortfolio(cat) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+    const show = cat === 'all' || item.dataset.cat === cat;
+    item.classList.toggle('hidden', !show);
+  });
+}
+
+// ─── MEDIA MODAL ─────────────────────────────────────────────────────────────
+function openMedia(el) {
+  const type = el.dataset.type;
+  const title = el.dataset.title;
+  const desc = el.dataset.desc;
+  const cat = el.dataset.cat;
+  const src = el.dataset.src;
+  const videoUrl = el.dataset.videoUrl;
+  let mediaHtml = '';
+  if (type === 'video' && videoUrl) {
+    mediaHtml = `<iframe class="modal-media" src="${videoUrl}" frameborder="0" allowfullscreen></iframe>`;
+  } else if (type === 'video' && src) {
+    mediaHtml = `<video class="modal-media" src="${src}" controls autoplay></video>`;
+  } else if (src) {
+    mediaHtml = `<img class="modal-media-img" src="${src}" alt="${title}">`;
+  } else {
+    mediaHtml = `<div style="aspect-ratio:16/9;background:var(--bg3);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:14px;">No preview available</div>`;
+  }
+  document.getElementById('modalMediaContent').innerHTML = mediaHtml;
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalCat').textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+  document.getElementById('modalDesc').textContent = desc || '';
+  document.getElementById('mediaModal').classList.add('open');
+}
+
+function closeModal(id) {
+  const m = document.getElementById(id);
+  m.classList.remove('open');
+  if (id === 'mediaModal') document.getElementById('modalMediaContent').innerHTML = '';
+}
+function closeIfBg(e) {
+  if (e.target === e.currentTarget) closeModal(e.currentTarget.id);
+}
+
+// ─── ADD MODAL ───────────────────────────────────────────────────────────────
+let uploadedMediaUrl = null;
+
+
+function toggleVideoUrl() {
+  const isVideo = document.getElementById('addType').value === 'video';
+  document.getElementById('videoUrlGroup').style.display = isVideo ? 'block' : 'none';
+}
+
+
+
+// ─── SCROLL REVEAL ───────────────────────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// drag & drop upload zone
+const zone = document.getElementById('uploadZone');
+if (zone) {
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault(); zone.classList.remove('dragover');
+    const f = e.dataTransfer.files[0];
+    if (f) { document.getElementById('addMediaInput').files = e.dataTransfer.files; handleMediaUpload({files:[f]}); }
+  });
+}
+</script>
+</body>
+</html>
