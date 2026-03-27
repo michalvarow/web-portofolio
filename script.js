@@ -59,13 +59,143 @@ function toggleTheme() {
 }
 
 // ─── PORTFOLIO FILTER ────────────────────────────────────────────────────────
+// function filterPortfolio(cat) {
+//   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+//   document.querySelectorAll('#portfolio .portfolio-item').forEach(item => {
+//     const show = cat === 'all' || item.dataset.cat === cat;
+//     item.classList.toggle('hidden', !show);
+//   });
+// }
+
+// Fungsi Filter & Animasi Marquee
+// function filterPortfolio(cat) {
+//     const grid = document.getElementById('portfolioGrid');
+//     const marquee = document.getElementById('portfolioMarquee');
+//     const track = document.getElementById('marqueeTrack');
+
+//     if (!grid || !marquee || !track) {
+//         console.error("Gagal nemuin elemen! Cek ID di HTML-mu.");
+//         return;
+//     }
+
+//     // 1. Update Tombol Aktif
+//     document.querySelectorAll('.tab-btn').forEach(btn => {
+//         btn.classList.toggle('active', btn.getAttribute('data-cat') === cat);
+//     });
+
+//     if (cat === 'all') {
+//         // --- MODE ANIMASI JALAN ---
+//         grid.style.display = 'none';
+//         marquee.style.display = 'block';
+
+//         // Cek kalau track masih kosong, isi dengan foto dari grid
+//         if (track.children.length === 0) {
+//             const originalItems = grid.querySelectorAll('.portfolio-item');
+//             originalItems.forEach(item => {
+//                 const clone = item.cloneNode(true);
+//                 clone.className = 'marquee-item'; // Pake class CSS khusus marquee
+//                 // Pastikan fungsi klik preview tetep jalan
+//                 clone.onclick = () => {
+//                     const src = item.getAttribute('data-src');
+//                     const type = item.getAttribute('data-type');
+//                     const title = item.getAttribute('data-title');
+//                     openMedia({ dataset: { src, type, title } });
+//                 };
+//                 track.appendChild(clone);
+//             });
+//             // Duplikat isi biar jalannya ga putus (Infinite)
+//             track.innerHTML += track.innerHTML;
+//         }
+//     } else {
+//         // --- MODE GRID STANDAR ---
+//         marquee.style.display = 'none';
+//         grid.style.display = 'grid';
+
+//         const items = grid.querySelectorAll('.portfolio-item');
+//         items.forEach(item => {
+//             const itemCat = item.getAttribute('data-cat');
+//             if (itemCat === cat) {
+//                 item.style.display = 'block';
+//             } else {
+//                 item.style.display = 'none';
+//             }
+//         });
+//     }
+// }
+
+// --- JANGAN UBAH CODE LAIN, CUKUP GANTI FUNGSI INI ---
 function filterPortfolio(cat) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
-  document.querySelectorAll('#portfolio .portfolio-item').forEach(item => {
-    const show = cat === 'all' || item.dataset.cat === cat;
-    item.classList.toggle('hidden', !show);
-  });
+    const grid = document.getElementById('portfolioGrid');
+    const marquee = document.getElementById('portfolioMarquee');
+    // Hanya gunakan 2 track (Baris)
+    const tracks = [
+        document.getElementById('marqueeTrack1'),
+        document.getElementById('marqueeTrack2')
+    ];
+
+    if (!grid || !marquee) return;
+
+    // 1. Update status tombol filter yang aktif
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-cat') === cat);
+    });
+
+    if (cat === 'all') {
+        // --- MODE ALL (BINABOX 2 BARIS) ---
+        grid.style.display = 'none';
+        marquee.style.display = 'flex'; // Pakai flex agar gap antar baris aktif
+
+        // Isi track jika masih kosong
+        if (tracks[0] && tracks[0].children.length === 0) {
+            const items = grid.querySelectorAll('.portfolio-item');
+            
+            items.forEach((item, index) => {
+                const clone = item.cloneNode(true);
+                
+                // BERSIHKAN STATUS: Paksa tampil & gunakan class khusus marquee
+                clone.className = 'marquee-item';
+                clone.style.display = 'block';
+                clone.style.opacity = '1';
+                clone.style.visibility = 'visible';
+                
+                // Pasang fungsi klik preview
+                clone.onclick = () => {
+                    if (typeof openMedia === 'function') openMedia(item);
+                };
+                
+                // Bagi rata ke 2 baris (index 0 dan 1)
+                const trackIdx = index % 2; 
+                if (tracks[trackIdx]) tracks[trackIdx].appendChild(clone);
+            });
+
+            // Duplikasi isi track agar animasi looping (Infinite) tidak putus
+            tracks.forEach(t => { 
+                if(t) t.innerHTML += t.innerHTML; 
+            });
+        }
+    } else {
+        // --- MODE KATEGORI (GRID) ---
+        marquee.style.display = 'none';
+        grid.style.display = 'grid';
+
+        grid.querySelectorAll('.portfolio-item').forEach(item => {
+            const itemCat = item.getAttribute('data-cat');
+            if (itemCat === cat) {
+                item.style.display = 'block';
+                item.classList.remove('hidden');
+            } else {
+                item.style.display = 'none';
+                item.classList.add('hidden');
+            }
+        });
+    }
 }
+
+// Pastikan All langsung jalan
+document.addEventListener('DOMContentLoaded', () => {
+    filterPortfolio('all');
+});
+
 
 // ─── MEDIA MODAL ─────────────────────────────────────────────────────────────
 function openMedia(el) {
@@ -106,3 +236,4 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
