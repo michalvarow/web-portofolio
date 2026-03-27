@@ -1,238 +1,723 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark" data-lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael Alvarow — Digital Marketing & Content Creator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michael Alvarow — Digital Marketing & Content Creator</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<nav>
-  <a href="#hero" class="nav-logo">MA.</a>
-  <div class="nav-links">
-    <a href="#about" data-i18n="nav.about">About</a>
-    <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
-    <a href="#certificates" data-i18n="nav.certificates">Certificates</a>
-    <a href="#experience" data-i18n="nav.experience">Experience</a>
-    <a href="#contact" data-i18n="nav.contact">Contact</a>
-  </div>
-  <div class="nav-controls">
-    <button class="ctrl-btn" id="langToggle" onclick="toggleLang()" title="Switch Language">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      <span id="langLabel">中文</span>
-    </button>
-    <button class="ctrl-btn" onclick="toggleTheme()" title="Toggle Theme">
-      <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <span id="themeLabel">Light</span>
-    </button>
-  </div>
-</nav>
-
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-badge" data-i18n="hero.badge">Digital Marketing & Content Creator</div>
-    <h1 class="hero-name">Michael <em>Alvarow</em></h1>
-    <p class="hero-tagline" data-i18n="hero.tagline">Helping brands grow through creative content and digital marketing strategies that drive results and engagement.</p>
-    <div class="hero-cta">
-      <a href="#portfolio" class="btn-primary" data-i18n="hero.cta1">View Portfolio</a>
-      <a href="#contact" class="btn-secondary" data-i18n="hero.cta2">Get in Touch</a>
+  <nav>
+    <a href="#hero" class="nav-logo">MA.</a>
+    <div class="nav-links">
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="#certificates" data-i18n="nav.certificates">Certificates</a>
+      <a href="#experience" data-i18n="nav.experience">Experience</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </div>
-  </div>
-  <div class="hero-scroll">
-    <span data-i18n="hero.scroll">Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="about-grid">
-    <div class="about-image-wrap">
-      <div class="about-image-placeholder" style="background-image: url('assets/foto profile.jpeg'); background-size: cover; background-position: center;"></div>
+    <div class="nav-controls">
+      <button class="ctrl-btn" id="langToggle" onclick="toggleLang()" title="Switch Language">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" />
+          <path
+            d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </svg>
+        <span id="langLabel">中文</span>
+      </button>
+      <button class="ctrl-btn" onclick="toggleTheme()" title="Toggle Theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <span id="themeLabel">Light</span>
+      </button>
     </div>
-    <div class="about-text reveal">
-      <div class="section-header">
-        <div class="section-label" data-i18n="about.label">About Me</div>
-        <h2 class="section-title" data-i18n="about.title">Where <em>Psychology</em><br>Meets Visual Art</h2>
-      </div>
-      <p data-i18n="about.p1">Psychology graduate with over 5 years of experience as a visual editor and photographer. I specialize in producing emotionally resonant content that connects brands with their audiences on a deeper level.</p>
-      <p data-i18n="about.p2">From concept development to post-production — my approach blends behavioral insights with compelling visual storytelling to drive engagement and build lasting brand impact.</p>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-num">5+</div><div class="stat-label" data-i18n="stat.years">Years Exp.</div></div>
-        <div class="stat"><div class="stat-num">4</div><div class="stat-label" data-i18n="stat.companies">Companies</div></div>
-        <div class="stat"><div class="stat-num">3.64</div><div class="stat-label" data-i18n="stat.gpa">GPA</div></div>
-        <div class="stat"><div class="stat-num">2</div><div class="stat-label" data-i18n="stat.hskk">HSKK</div></div>
-      </div>
-      <div class="skills-tags">
-        <span class="skill-tag">Adobe Premiere Pro</span>
-        <span class="skill-tag">After Effects</span>
-        <span class="skill-tag">Photoshop</span>
-        <span class="skill-tag">Canva</span>
-        <span class="skill-tag">CapCut</span>
-        <span class="skill-tag">Photography</span>
-        <span class="skill-tag">Content Strategy</span>
-        <span class="skill-tag">Psychology</span>
-        <span class="skill-tag">Video Production</span>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-i18n="hero.badge">Digital Marketing & Content Creator</div>
+      <h1 class="hero-name">Michael <em>Alvarow</em></h1>
+      <p class="hero-tagline" data-i18n="hero.tagline">Helping brands grow through creative content and digital
+        marketing strategies that drive results and engagement.</p>
+      <div class="hero-cta">
+        <a href="#portfolio" class="btn-primary" data-i18n="hero.cta1">View Portfolio</a>
+        <a href="#contact" class="btn-secondary" data-i18n="hero.cta2">Get in Touch</a>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="portfolio">
-  <div style="max-width:1400px;margin:0 auto;">
-    <div class="section-header reveal">
-      <div class="section-label">Portfolio</div>
-      <h2 class="section-title">Selected <em>Works</em></h2>
+    <div class="hero-scroll">
+      <span data-i18n="hero.scroll">Scroll</span>
+      <div class="scroll-line"></div>
     </div>
+  </section>
 
-    <div class="portfolio-tabs">
-      <button class="tab-btn active" data-cat="all" onclick="filterPortfolio('all')">All</button>
-      <button class="tab-btn" data-cat="photography" onclick="filterPortfolio('photography')">Photography</button>
-      <button class="tab-btn" data-cat="videography" onclick="filterPortfolio('videography')">Videography</button>
-      <button class="tab-btn" data-cat="furniture" onclick="filterPortfolio('furniture')">Furniture</button>
-      <button class="tab-btn" data-cat="product" onclick="filterPortfolio('product')">Product Shoot</button>
-      <button class="tab-btn" data-cat="social" onclick="filterPortfolio('social')">Social Media</button>
-      <button class="tab-btn" data-cat="Food and Beverage" onclick="filterPortfolio('Food and Beverage')">Food & Beverage</button>
-    </div>
-
-    <div class="portfolio-grid">
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture1.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture1.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture2.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture2.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture3.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture3.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture4.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture4.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture5.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture5.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture6.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture6.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture7.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture7.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture8.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture8.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture9.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture9.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture10.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture10.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-      <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture" data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture11.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture11.jpg"><div class="item-overlay"><div class="item-title">Ilena Furniture</div><div class="item-cat">Furniture</div></div></div>
-
-      <div class="portfolio-item" data-cat="product" data-type="photo" data-title="Product Shoot" data-desc="Clean product photography" data-src="assets/img/portfolio/product1.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/product1.jpg"><div class="item-overlay"><div class="item-title">Product Shoot</div><div class="item-cat">Product</div></div></div>
-      <div class="portfolio-item" data-cat="photography" data-type="photo" data-title="Photo Shoots" data-desc="Photoshoot Presweet" data-src="assets/img/portfolio/photography/photography1.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/photography/photography1.jpg"><div class="item-overlay"><div class="item-title">Photography</div><div class="item-cat">Photography</div></div></div>
-      <div class="portfolio-item" data-cat="photography" data-type="photo" data-title="Photo Shoots" data-desc="Photoshoot Presweet" data-src="assets/img/portfolio/photography/photography2.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/photography/photography2.jpg"><div class="item-overlay"><div class="item-title">Photography</div><div class="item-cat">Photography</div></div></div>
-
-
-      <div class="portfolio-item" data-cat="videography" data-type="video" data-title="Brand Video" data-desc="Campaign video ads" data-src="assets/video/video1.mp4" onclick="openMedia(this)"><video class="item-img" src="assets/video/video1.mp4"></video><div class="item-overlay"><div class="item-title">Brand Video</div><div class="item-cat">Videography</div></div><div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      <div class="portfolio-item" data-cat="videography" data-type="video" data-title="Kastara Living" data-desc="Product Shoot" data-src="assets/video/video2.mp4" onclick="openMedia(this)"><video class="item-img" src="assets/video/video2.mp4"></video><div class="item-overlay"><div class="item-title">Kastara Living</div><div class="item-cat">Videography</div></div><div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      <div class="portfolio-item" data-cat="videography" data-type="video" data-title="UNDIP FAKULTAS GIZI" data-desc="Company Profile" data-src="assets/video/video3.mp4" onclick="openMedia(this)"><video class="item-img" src="assets/video/video3.mp4"></video><div class="item-overlay"><div class="item-title">UNDIP FAKULTAS GIZI</div><div class="item-cat">Videography</div></div><div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      <div class="portfolio-item" data-cat="videography" data-type="video" data-title="Ilena Interior" data-desc="Custom Interior Kost Q" data-src="assets/video/video4.mp4" onclick="openMedia(this)"><video class="item-img" src="assets/video/video4.mp4"></video><div class="item-overlay"><div class="item-title">Ilena Interior</div><div class="item-cat">Videography</div></div><div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      <div class="portfolio-item" data-cat="videography" data-type="video" data-title="CV Catur Mandiri" data-desc="Company Profile" data-src="assets/video/video5.mp4" onclick="openMedia(this)"><video class="item-img" src="assets/video/video5.mp4"></video><div class="item-overlay"><div class="item-title">CV Catur Mandiri</div><div class="item-cat">Videography</div></div><div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      <div class="portfolio-item" data-cat="videography" data-type="video" data-title=Sweet 17th Event" data-desc="Event" data-src="assets/video/video6.mp4" onclick="openMedia(this)"><video class="item-img" src="assets/video/video6.mp4"></video><div class="item-overlay"><div class="item-title">Sweet 17th Event </div><div class="item-cat">Videography</div></div><div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-
-
-      <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 1" data-src="assets/img/portfolio/food/food1.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/food/food1.jpg"><div class="item-overlay"><div class="item-title">Food Campaign</div></div></div>
-      <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 2" data-src="assets/img/portfolio/food/food2.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/food/food2.jpg"><div class="item-overlay"><div class="item-title">Food Campaign</div></div></div>
-      <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 3" data-src="assets/img/portfolio/food/food3.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/food/food3.jpg"><div class="item-overlay"><div class="item-title">Food Campaign</div></div></div>
-      <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 4" data-src="assets/img/portfolio/food/food4.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/food/food4.jpg"><div class="item-overlay"><div class="item-title">Food Campaign</div></div></div>
-      <div class="portfolio-item" data-cat="social" data-type="photo" data-title="Social Content" data-src="assets/img/portfolio/social1.jpg" onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/social1.jpg"><div class="item-overlay"><div class="item-title">Social Content</div><div class="item-cat">Social Media</div></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="certificates" style="background: var(--bg2);">
-  <div style="max-width:1400px;margin:0 auto;">
-    <div class="section-header reveal">
-      <div class="section-label" data-i18n="cert.label">Achievements</div>
-      <h2 class="section-title" data-i18n="cert.title">My <em>Certificates</em></h2>
-    </div>
-    
-    <div class="portfolio-grid">
-      <div class="portfolio-item" 
-           data-type="photo" 
-           data-cat="Certificate" 
-           data-title="HSKK Certificate" 
-           data-desc="Chinese Language Proficiency Test" 
-           data-src="assets/img/portfolio/photography1.jpg" 
-           onclick="openMedia(this)">
-        <img class="item-img" src="assets/img/portfolio/photography1.jpg" alt="HSKK">
-        <div class="item-overlay">
-          <div class="item-title">HSKK Certificate</div>
-          <div class="item-cat">Language</div>
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-image-wrap">
+        <div class="about-image-placeholder"
+          style="background-image: url('assets/foto profile.jpeg'); background-size: cover; background-position: center;">
         </div>
       </div>
-      
+      <div class="about-text reveal">
+        <div class="section-header">
+          <div class="section-label" data-i18n="about.label">About Me</div>
+          <h2 class="section-title" data-i18n="about.title">Where <em>Psychology</em><br>Meets Visual Art</h2>
+        </div>
+        <p data-i18n="about.p1">Psychology graduate with over 5 years of experience as a visual editor and photographer.
+          I specialize in producing emotionally resonant content that connects brands with their audiences on a deeper
+          level.</p>
+        <p data-i18n="about.p2">From concept development to post-production — my approach blends behavioral insights
+          with compelling visual storytelling to drive engagement and build lasting brand impact.</p>
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-num">5+</div>
+            <div class="stat-label" data-i18n="stat.years">Years Exp.</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">4</div>
+            <div class="stat-label" data-i18n="stat.companies">Companies</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3.64</div>
+            <div class="stat-label" data-i18n="stat.gpa">GPA</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2</div>
+            <div class="stat-label" data-i18n="stat.hskk">HSKK</div>
+          </div>
+        </div>
+        <div class="skills-tags">
+          <span class="skill-tag">Adobe Premiere Pro</span>
+          <span class="skill-tag">After Effects</span>
+          <span class="skill-tag">Photoshop</span>
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">CapCut</span>
+          <span class="skill-tag">Photography</span>
+          <span class="skill-tag">Content Strategy</span>
+          <span class="skill-tag">Psychology</span>
+          <span class="skill-tag">Video Production</span>
+        </div>
       </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="section-header reveal">
-      <div class="section-label" data-i18n="exp.label">Experience</div>
-      <h2 class="section-title" data-i18n="exp.title">Work <em>History</em></h2>
     </div>
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date" data-i18n="exp.date1">Jan 2025 — Present</div>
-        <div class="timeline-title" data-i18n="exp.title1">Digital Marketing — Content Creator</div>
-        <div class="timeline-company">CV. Catur Mandiri Bhakti Mandiri</div>
-        <div class="timeline-desc" data-i18n="exp.desc1">Developing brand-aligned content planners, managing end-to-end production for product shoots and digital campaigns...</div>
+  </section>
+
+  <!-- <section id="portfolio">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div class="section-header reveal">
+        <div class="section-label">Portfolio</div>
+        <h2 class="section-title">Selected <em>Works</em></h2>
       </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date" data-i18n="exp.date2">Oct 2023 — May 2024</div>
-        <div class="timeline-title" data-i18n="exp.title2">Content Researcher & Video Editor</div>
-        <div class="timeline-company">Bull Media</div>
-        <div class="timeline-desc" data-i18n="exp.desc2">Product research, high-quality photo and video capture, ad creative production...</div>
+
+      <div class="portfolio-tabs">
+        <button class="tab-btn active" data-cat="all" onclick="filterPortfolio('all')">All</button>
+        <button class="tab-btn" data-cat="photography" onclick="filterPortfolio('photography')">Photography</button>
+        <button class="tab-btn" data-cat="videography" onclick="filterPortfolio('videography')">Videography</button>
+        <button class="tab-btn" data-cat="furniture" onclick="filterPortfolio('furniture')">Furniture</button>
+        <button class="tab-btn" data-cat="product" onclick="filterPortfolio('product')">Product Shoot</button>
+        <button class="tab-btn" data-cat="social" onclick="filterPortfolio('social')">Social Media</button>
+        <button class="tab-btn" data-cat="Food and Beverage" onclick="filterPortfolio('Food and Beverage')">Food &
+          Beverage</button>
       </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date" data-i18n="exp.date3">Jan 2021 — May 2023</div>
-        <div class="timeline-title" data-i18n="exp.title3">Head of Media Department</div>
-        <div class="timeline-company">PT. Hafvintha Putra Panaluan</div>
-        <div class="timeline-desc" data-i18n="exp.desc3">Led full media department including social media calendar management, product photoshoot coordination...</div>
+
+      <div id="portfolioMarquee" class="portfolio-marquee" style="display: none;">
+        <div class="marquee-track" id="marqueeTrack"></div>
       </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date" data-i18n="exp.date4">Feb 2015 — Mar 2019</div>
-        <div class="timeline-title" data-i18n="exp.title4">Head Editor & Videographer</div>
-        <div class="timeline-company">Chapter Eleven Film</div>
-        <div class="timeline-desc" data-i18n="exp.desc4">Managed all stages of video production from pre-production planning to color grading and final delivery.</div>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture1.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture1.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture2.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture2.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture3.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture3.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture4.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture4.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture5.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture5.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture6.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture6.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture7.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture7.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture8.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture8.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture9.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture9.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture10.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture10.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture11.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture11.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-cat="product" data-type="photo" data-title="Product Shoot"
+          data-desc="Clean product photography" data-src="assets/img/portfolio/product1.jpg" onclick="openMedia(this)">
+          <img class="item-img" src="assets/img/portfolio/product1.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Product Shoot</div>
+            <div class="item-cat">Product</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="photography" data-type="photo" data-title="Photo Shoots"
+          data-desc="Photoshoot Presweet" data-src="assets/img/portfolio/photography/photography1.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/photography/photography1.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Photography</div>
+            <div class="item-cat">Photography</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="photography" data-type="photo" data-title="Photo Shoots"
+          data-desc="Photoshoot Presweet" data-src="assets/img/portfolio/photography/photography2.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/photography/photography2.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Photography</div>
+            <div class="item-cat">Photography</div>
+          </div>
+        </div>
+
+
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="Brand Video"
+          data-desc="Campaign video ads" data-src="assets/video/video1.mp4" onclick="openMedia(this)"><video
+            class="item-img" src="assets/video/video1.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">Brand Video</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="Kastara Living"
+          data-desc="Product Shoot" data-src="assets/video/video2.mp4" onclick="openMedia(this)"><video class="item-img"
+            src="assets/video/video2.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">Kastara Living</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="UNDIP FAKULTAS GIZI"
+          data-desc="Company Profile" data-src="assets/video/video3.mp4" onclick="openMedia(this)"><video
+            class="item-img" src="assets/video/video3.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">UNDIP FAKULTAS GIZI</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="Ilena Interior"
+          data-desc="Custom Interior Kost Q" data-src="assets/video/video4.mp4" onclick="openMedia(this)"><video
+            class="item-img" src="assets/video/video4.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">Ilena Interior</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="CV Catur Mandiri"
+          data-desc="Company Profile" data-src="assets/video/video5.mp4" onclick="openMedia(this)"><video
+            class="item-img" src="assets/video/video5.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">CV Catur Mandiri</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title=Sweet 17th Event"
+          data-desc="Event" data-src="assets/video/video6.mp4" onclick="openMedia(this)"><video class="item-img"
+            src="assets/video/video6.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">Sweet 17th Event </div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+
+
+        <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 1"
+          data-src="assets/img/portfolio/food/food1.jpg" onclick="openMedia(this)"><img class="item-img"
+            src="assets/img/portfolio/food/food1.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Food Campaign</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 2"
+          data-src="assets/img/portfolio/food/food2.jpg" onclick="openMedia(this)"><img class="item-img"
+            src="assets/img/portfolio/food/food2.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Food Campaign</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 3"
+          data-src="assets/img/portfolio/food/food3.jpg" onclick="openMedia(this)"><img class="item-img"
+            src="assets/img/portfolio/food/food3.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Food Campaign</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 4"
+          data-src="assets/img/portfolio/food/food4.jpg" onclick="openMedia(this)"><img class="item-img"
+            src="assets/img/portfolio/food/food4.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Food Campaign</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="social" data-type="photo" data-title="Social Content"
+          data-src="assets/img/portfolio/social1.jpg" onclick="openMedia(this)"><img class="item-img"
+            src="assets/img/portfolio/social1.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Social Content</div>
+            <div class="item-cat">Social Media</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <section id="portfolio">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div class="section-header reveal">
+        <div class="section-label">Portfolio</div>
+        <h2 class="section-title">Selected <em>Works</em></h2>
+      </div>
+
+      <div class="portfolio-tabs">
+        <button class="tab-btn active" data-cat="all" onclick="filterPortfolio('all')">All</button>
+        <button class="tab-btn" data-cat="photography" onclick="filterPortfolio('photography')">Photography</button>
+        <button class="tab-btn" data-cat="videography" onclick="filterPortfolio('videography')">Videography</button>
+        <button class="tab-btn" data-cat="furniture" onclick="filterPortfolio('furniture')">Furniture</button>
+        <button class="tab-btn" data-cat="product" onclick="filterPortfolio('product')">Product Shoot</button>
+        <button class="tab-btn" data-cat="social" onclick="filterPortfolio('social')">Social Media</button>
+        <button class="tab-btn" data-cat="Food and Beverage" onclick="filterPortfolio('Food and Beverage')">Food &
+          Beverage</button>
+      </div>
+
+      <div id="portfolioMarquee" class="portfolio-marquee">
+        <div class="marquee-row marquee-left">
+          <div class="marquee-track" id="marqueeTrack1"></div>
+        </div>
+        <div class="marquee-row marquee-right">
+          <div class="marquee-track" id="marqueeTrack2"></div>
+        </div>
+        <!-- <div class="marquee-row marquee-left">
+          <div class="marquee-track" id="marqueeTrack3"></div>
+        </div> -->
+      </div>
+
+      <div class="portfolio-grid" id="portfolioGrid">
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture1.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture1.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture2.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture2.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture3.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture3.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture4.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture4.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture5.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture5.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture6.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture6.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture7.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture7.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture8.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture8.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture9.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture9.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture10.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture10.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="furniture" data-type="photo" data-title="Ilena Furniture"
+          data-desc="Modern furniture campaign" data-src="assets/img/portfolio/furniture/furniture11.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/furniture/furniture11.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Ilena Furniture</div>
+            <div class="item-cat">Furniture</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-cat="product" data-type="photo" data-title="Product Shoot"
+          data-desc="Clean product photography" data-src="assets/img/portfolio/product1.jpg" onclick="openMedia(this)">
+          <img class="item-img" src="assets/img/portfolio/product1.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Product Shoot</div>
+            <div class="item-cat">Product</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="photography" data-type="photo" data-title="Photo Shoots"
+          data-desc="Photoshoot Presweet" data-src="assets/img/portfolio/photography/photography1.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/photography/photography1.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Photography</div>
+            <div class="item-cat">Photography</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="photography" data-type="photo" data-title="Photo Shoots"
+          data-desc="Photoshoot Presweet" data-src="assets/img/portfolio/photography/photography2.jpg"
+          onclick="openMedia(this)"><img class="item-img" src="assets/img/portfolio/photography/photography2.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Photography</div>
+            <div class="item-cat">Photography</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="Brand Video"
+          data-desc="Campaign video ads" data-src="assets/video/video1.mp4" onclick="openMedia(this)"><video
+            class="item-img" src="assets/video/video1.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">Brand Video</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="Kastara Living"
+          data-desc="Product Shoot" data-src="assets/video/video2.mp4" onclick="openMedia(this)"><video class="item-img"
+            src="assets/video/video2.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">Kastara Living</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="UNDIP FAKULTAS GIZI"
+          data-desc="Company Profile" data-src="assets/video/video3.mp4" onclick="openMedia(this)"><video
+            class="item-img" src="assets/video/video3.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">UNDIP FAKULTAS GIZI</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="Ilena Interior"
+          data-desc="Custom Interior Kost Q" data-src="assets/video/video4.mp4" onclick="openMedia(this)"><video
+            class="item-img" src="assets/video/video4.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">Ilena Interior</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="CV Catur Mandiri"
+          data-desc="Company Profile" data-src="assets/video/video5.mp4" onclick="openMedia(this)"><video
+            class="item-img" src="assets/video/video5.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">CV Catur Mandiri</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+        <div class="portfolio-item" data-cat="videography" data-type="video" data-title="Sweet 17th Event"
+          data-desc="Event" data-src="assets/video/video6.mp4" onclick="openMedia(this)"><video class="item-img"
+            src="assets/video/video6.mp4"></video>
+          <div class="item-overlay">
+            <div class="item-title">Sweet 17th Event</div>
+            <div class="item-cat">Videography</div>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg></div>
+        </div>
+
+        <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 1"
+          data-src="assets/img/portfolio/food/food1.jpg" onclick="openMedia(this)"><img class="item-img"
+            src="assets/img/portfolio/food/food1.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Food Campaign</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 2"
+          data-src="assets/img/portfolio/food/food2.jpg" onclick="openMedia(this)"><img class="item-img"
+            src="assets/img/portfolio/food/food2.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Food Campaign</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 3"
+          data-src="assets/img/portfolio/food/food3.jpg" onclick="openMedia(this)"><img class="item-img"
+            src="assets/img/portfolio/food/food3.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Food Campaign</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="Food and Beverage" data-type="photo" data-title="Food Campaign 4"
+          data-src="assets/img/portfolio/food/food4.jpg" onclick="openMedia(this)"><img class="item-img"
+            src="assets/img/portfolio/food/food4.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Food Campaign</div>
+          </div>
+        </div>
+        <div class="portfolio-item" data-cat="social" data-type="photo" data-title="Social Content"
+          data-src="assets/img/portfolio/social1.jpg" onclick="openMedia(this)"><img class="item-img"
+            src="assets/img/portfolio/social1.jpg">
+          <div class="item-overlay">
+            <div class="item-title">Social Content</div>
+            <div class="item-cat">Social Media</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates" style="background: var(--bg2);">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div class="section-header reveal">
+        <div class="section-label" data-i18n="cert.label">Achievements</div>
+        <h2 class="section-title" data-i18n="cert.title">My <em>Certificates</em></h2>
+      </div>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-item" data-type="photo" data-cat="Certificate" data-title="HSKK Certificate"
+          data-desc="Chinese Language Proficiency Test" data-src="assets/img/portfolio/photography1.jpg"
+          onclick="openMedia(this)">
+          <img class="item-img" src="assets/img/portfolio/photography1.jpg" alt="HSKK">
+          <div class="item-overlay">
+            <div class="item-title">HSKK Certificate</div>
+            <div class="item-cat">Language</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="section-header reveal">
+        <div class="section-label" data-i18n="exp.label">Experience</div>
+        <h2 class="section-title" data-i18n="exp.title">Work <em>History</em></h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date" data-i18n="exp.date1">Jan 2025 — Present</div>
+          <div class="timeline-title" data-i18n="exp.title1">Digital Marketing — Content Creator</div>
+          <div class="timeline-company">CV. Catur Mandiri Bhakti Mandiri</div>
+          <div class="timeline-desc" data-i18n="exp.desc1">Developing brand-aligned content planners, managing
+            end-to-end production for product shoots and digital campaigns...</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date" data-i18n="exp.date2">Oct 2023 — May 2024</div>
+          <div class="timeline-title" data-i18n="exp.title2">Content Researcher & Video Editor</div>
+          <div class="timeline-company">Bull Media</div>
+          <div class="timeline-desc" data-i18n="exp.desc2">Product research, high-quality photo and video capture, ad
+            creative production...</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date" data-i18n="exp.date3">Jan 2021 — May 2023</div>
+          <div class="timeline-title" data-i18n="exp.title3">Head of Media Department</div>
+          <div class="timeline-company">PT. Hafvintha Putra Panaluan</div>
+          <div class="timeline-desc" data-i18n="exp.desc3">Led full media department including social media calendar
+            management, product photoshoot coordination...</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date" data-i18n="exp.date4">Feb 2015 — Mar 2019</div>
+          <div class="timeline-title" data-i18n="exp.title4">Head Editor & Videographer</div>
+          <div class="timeline-company">Chapter Eleven Film</div>
+          <div class="timeline-desc" data-i18n="exp.desc4">Managed all stages of video production from pre-production
+            planning to color grading and final delivery.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-inner reveal">
+      <div class="section-label" style="justify-content:center">Contact</div>
+      <h2 class="section-title">Let's <em>Collaborate</em></h2>
+      <p style="color:var(--text2);margin-top:20px;font-size:16px;font-weight:300;">Available for freelance projects and
+        full-time opportunities</p>
+      <a href="mailto:michalvarow96@gmail.com" class="contact-email">michalvarow96@gmail.com</a>
+      <p style="color:var(--text3);font-size:14px;">(+62) 895 391 016 655 · Semarang, Indonesia</p>
+      <div class="social-links">
+        <a href="https://wa.me/62895391016655" target="_blank" class="social-link" title="WhatsApp"><svg
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12a9 9 0 1 1-4.3-7.6L21 3l-1.4 4.3A9 9 0 0 1 21 12z" />
+            <path d="M8 12c1.5 2.5 3.5 4.5 6 6" />
+          </svg></a>
+        <a href="mailto:michalvarow96@gmail.com" class="social-link"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Michael Alvarow Kurnia Sugiyo</span>
+    <span data-i18n="footer.made">Digital Marketing · Content Creator · Photographer</span>
+  </footer>
+
+  <div class="modal-overlay" id="mediaModal" onclick="closeIfBg(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('mediaModal')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <div id="modalMediaContent"></div>
+      <div class="modal-info">
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-cat" id="modalCat"></div>
+        <div class="modal-desc" id="modalDesc"></div>
       </div>
     </div>
   </div>
-</section>
 
-<section id="contact">
-  <div class="contact-inner reveal">
-    <div class="section-label" style="justify-content:center">Contact</div>
-    <h2 class="section-title">Let's <em>Collaborate</em></h2>
-    <p style="color:var(--text2);margin-top:20px;font-size:16px;font-weight:300;">Available for freelance projects and full-time opportunities</p>
-    <a href="mailto:michalvarow96@gmail.com" class="contact-email">michalvarow96@gmail.com</a>
-    <p style="color:var(--text3);font-size:14px;">(+62) 895 391 016 655 · Semarang, Indonesia</p>
-    <div class="social-links">
-      <a href="https://wa.me/62895391016655" target="_blank" class="social-link" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-4.3-7.6L21 3l-1.4 4.3A9 9 0 0 1 21 12z"/><path d="M8 12c1.5 2.5 3.5 4.5 6 6"/></svg></a>
-      <a href="mailto:michalvarow96@gmail.com" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span>© 2026 Michael Alvarow Kurnia Sugiyo</span>
-  <span data-i18n="footer.made">Digital Marketing · Content Creator · Photographer</span>
-</footer>
-
-<div class="modal-overlay" id="mediaModal" onclick="closeIfBg(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('mediaModal')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <div id="modalMediaContent"></div>
-    <div class="modal-info">
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-cat" id="modalCat"></div>
-      <div class="modal-desc" id="modalDesc"></div>
-    </div>
-  </div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>

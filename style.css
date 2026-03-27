@@ -384,3 +384,48 @@ footer {
     .portfolio-grid{grid-template-columns:1fr;}
     .hero-cta{flex-direction:column;align-items:center;}
 }
+
+/* --- KODE BARU: ANIMASI BINABOX --- */
+/* --- Tambahan Animasi All (Binabox) --- */
+#portfolioMarquee {
+    display: none; /* Sembunyi kalau bukan filter All */
+    flex-direction: column;
+    gap: 15px;
+    padding: 30px 0;
+}
+
+.marquee-row { width: 100%; overflow: hidden; white-space: nowrap; }
+.marquee-track { display: flex; gap: 15px; width: max-content; }
+
+/* Kunci Ukuran Gambar Jadi Kecil */
+.marquee-item {
+    width: 320px !important; /* UKURAN LEBAR KECIL & TETAP (ganti 350px/280px yang lama) */
+    aspect-ratio: 4/3 !important; /* KUNCI RASIO ASPEK agar sama dengan kisi asli */
+    height: auto !important; /* Biar flex tidak memaksa tinggi yang salah */
+    flex-shrink: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.marquee-item img, .marquee-item video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Kunci object-fit biar ga meregang/gepeng */
+    display: block !important;
+}
+
+@media (max-width: 768px) {
+    .marquee-item {
+        width: 220px !important;
+    }
+}
+
+/* Arah Jalan */
+.marquee-left .marquee-track { animation: binaboxL 140s linear infinite; }
+.marquee-right .marquee-track { animation: binaboxR 140s linear infinite; }
+@keyframes binaboxL { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes binaboxR { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
